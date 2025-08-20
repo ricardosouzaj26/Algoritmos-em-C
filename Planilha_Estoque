@@ -1,30 +1,30 @@
-#include <stdio.h>   // Biblioteca para entrada/saída padrão
+#include <stdio.h>   // Biblioteca para entrada/saÃ­da padrÃ£o
 #include <stdlib.h>  // Biblioteca usada aqui para system("cls||clear")
-#include <string.h>  // Biblioteca usada para manipulação de strings
+#include <string.h>  // Biblioteca usada para manipulaÃ§Ã£o de strings
 
-#define MaxProdutos 10  // Quantidade máxima de produtos que podem ser cadastrados
-#define Tamanho 50      // Tamanho máximo do nome de cada produto
+#define MaxProdutos 10  // Quantidade mÃ¡xima de produtos que podem ser cadastrados
+#define Tamanho 50      // Tamanho mÃ¡ximo do nome de cada produto
 
-// Função que mostra o menu principal
+// FunÃ§Ã£o que mostra o menu principal
 void menu()
 {
     printf("1 - Cadastrar Produto\n2 - Visualizar Produtos Cadastrados\n3 - Sair\n\n");
 }
 
-// Função para cadastrar um produto (nome, quantidade e valor)
+// FunÃ§Ã£o para cadastrar um produto (nome, quantidade e valor)
 void CadastrarProduto(char nome[MaxProdutos][Tamanho], int quantidade[], double valor[], int indice)
 {
     printf("\nQuantidade do Produto: ");
-    scanf("%d", &quantidade[indice]);   // Lê a quantidade
+    scanf("%d", &quantidade[indice]);   // LÃª a quantidade
     printf("Valor do Produto: ");
-    scanf("%lf", &valor[indice]);       // Lê o valor unitário
+    scanf("%lf", &valor[indice]);       // LÃª o valor unitÃ¡rio
 
-    getchar(); // Limpa o buffer para não atrapalhar o fgets()
+    getchar(); // Limpa o buffer para nÃ£o atrapalhar o fgets()
     printf("Nome do Produto: ");
-    fgets(nome[indice], Tamanho, stdin); // Lê o nome do produto
+    fgets(nome[indice], Tamanho, stdin); // LÃª o nome do produto
     nome[indice][strcspn(nome[indice], "\n")] = '\0'; // Remove o '\n' do final
 
-    // Se a primeira letra do nome for minúscula, converte para maiúscula
+    // Se a primeira letra do nome for minÃºscula, converte para maiÃºscula
     if(nome[indice][0] <= 'z' && nome[indice][0] >= 'a')
     {
         nome[indice][0] = nome[indice][0] - 32;
@@ -34,7 +34,7 @@ void CadastrarProduto(char nome[MaxProdutos][Tamanho], int quantidade[], double 
     system("cls||clear"); // Limpa a tela (funciona no Windows e Linux)
 }
 
-// Função que exibe todos os produtos cadastrados
+// FunÃ§Ã£o que exibe todos os produtos cadastrados
 void visualizarProdutos(char nome[MaxProdutos][Tamanho], int quantidade[], double valor[], int indice)
 {
     printf("\n%-12s|%-20s|%-14s|%-14s|%-14s|" , "Produtos" , "Nome" , "Quantidade" , "Valor Unidade", "Valor Total");
@@ -46,7 +46,7 @@ void visualizarProdutos(char nome[MaxProdutos][Tamanho], int quantidade[], doubl
     }
 }
 
-// Função que pede ao usuário o número do produto a ser alterado
+// FunÃ§Ã£o que pede ao usuÃ¡rio o nÃºmero do produto a ser alterado
 int AlterarProdutos(char nome[MaxProdutos][Tamanho], int quantidade[], double valor[], int indice)
 {
     printf("\nDigite o Numero do Produto a Ser Alterado (1 a %d): ", MaxProdutos);
@@ -54,25 +54,25 @@ int AlterarProdutos(char nome[MaxProdutos][Tamanho], int quantidade[], double va
     return indice;
 }
 
-// Função para mostrar mensagem de erro em caso de entrada inválida
+// FunÃ§Ã£o para mostrar mensagem de erro em caso de entrada invÃ¡lida
 void ErroDeEntrada()
 {
     printf("\nDigito Invalido, Tente Novamente.\n\n");
 }
 
-// Função principal
+// FunÃ§Ã£o principal
 int main()
 {
-    int entrada, indice = 0; // entrada = opção do menu, indice = número de produtos cadastrados
+    int entrada, indice = 0; // entrada = opÃ§Ã£o do menu, indice = nÃºmero de produtos cadastrados
     int quantidade[MaxProdutos];
     double valor[MaxProdutos];
     char nome[MaxProdutos][Tamanho];
 
-    // Loop principal do programa (enquanto não sair e ainda não atingiu limite de produtos)
+    // Loop principal do programa (enquanto nÃ£o sair e ainda nÃ£o atingiu limite de produtos)
     do
     {
         menu();                // Mostra menu
-        scanf("%d", &entrada); // Lê a opção escolhida
+        scanf("%d", &entrada); // LÃª a opÃ§Ã£o escolhida
 
         switch(entrada)
         {
@@ -84,7 +84,7 @@ int main()
             }
             case 2: // Visualizar produtos cadastrados
             {
-                if(indice != 0) // Só mostra se tiver produtos
+                if(indice != 0) // SÃ³ mostra se tiver produtos
                 {
                     system("cls||clear");
                     visualizarProdutos(nome, quantidade, valor, indice);
@@ -100,7 +100,7 @@ int main()
             case 3: // Sair
                 break;
 
-            default: // Entrada inválida
+            default: // Entrada invÃ¡lida
             {
                 system("cls||clear");
                 ErroDeEntrada();
@@ -128,7 +128,7 @@ int main()
                             ErroDeEntrada();
                     }while(indice < 1 || indice > MaxProdutos);
 
-                    // Substitui o produto escolhido pelo usuário
+                    // Substitui o produto escolhido pelo usuÃ¡rio
                     CadastrarProduto(nome, quantidade, valor, indice - 1);
                     break;
 
