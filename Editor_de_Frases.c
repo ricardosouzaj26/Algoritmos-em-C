@@ -1,15 +1,15 @@
-#include <stdio.h>   // Biblioteca padrão para entrada e saída
-#include <stdlib.h>  // Biblioteca padrão (usada aqui para system("cls||clear"))
-#include <string.h>  // Biblioteca para manipulação de strings
-#define MaxCaracteres 100 // Define o tamanho máximo da frase
+#include <stdio.h>   // Biblioteca padrÃ£o para entrada e saÃ­da
+#include <stdlib.h>  // Biblioteca padrÃ£o (usada aqui para system("cls||clear"))
+#include <string.h>  // Biblioteca para manipulaÃ§Ã£o de strings
+#define MaxCaracteres 100 // Define o tamanho mÃ¡ximo da frase
 
-// Declaração das funções utilizadas
+// DeclaraÃ§Ã£o das funÃ§Ãµes utilizadas
 void escolha(int entrada, char *frase);
 int pergunta();
 void subFrase(char *frase);
 void subLetra(char *frase);
 
-// Função que direciona a ação de acordo com a escolha do usuário
+// FunÃ§Ã£o que direciona a aÃ§Ã£o de acordo com a escolha do usuÃ¡rio
 void escolha(int entrada, char *frase)
 {
     switch(entrada)
@@ -19,7 +19,7 @@ void escolha(int entrada, char *frase)
             printf("Frase atualizada: %s\n", frase);
         break;
 
-        case 2: // Substituir letra específica
+        case 2: // Substituir letra especÃ­fica
             subLetra(frase);
             printf("Frase atualizada: %s\n", frase);
         break;
@@ -29,7 +29,7 @@ void escolha(int entrada, char *frase)
     }
 }
 
-// Exibe o menu e garante que o usuário escolha uma opção válida
+// Exibe o menu e garante que o usuÃ¡rio escolha uma opÃ§Ã£o vÃ¡lida
 int pergunta()
 {
     int entrada;
@@ -37,26 +37,26 @@ int pergunta()
     {
         printf("\n1 - Substituir frase inteira.\n2 - Substituir alguma letra da frase.\n3 - Encerrar Programa\n\n");
         scanf("%d", &entrada);
-    }while(entrada != 1 && entrada != 2 && entrada != 3); // Só aceita 1, 2 ou 3
+    }while(entrada != 1 && entrada != 2 && entrada != 3); // SÃ³ aceita 1, 2 ou 3
     return entrada;
 }
 
-// Substitui a frase inteira digitada pelo usuário
+// Substitui a frase inteira digitada pelo usuÃ¡rio
 void subFrase(char *frase)
 {
     char novaFrase[MaxCaracteres];
     getchar(); // Limpa o buffer do teclado (evita que o '\n' atrapalhe o fgets)
 
     printf("\nDigite a nova frase: ");
-    fgets(novaFrase, MaxCaracteres, stdin); // Lê nova frase
+    fgets(novaFrase, MaxCaracteres, stdin); // LÃª nova frase
     novaFrase[strcspn(novaFrase, "\n")] = '\0'; // Remove o '\n' do final
-    strcpy(frase, novaFrase); // Copia nova frase para a variável principal
+    strcpy(frase, novaFrase); // Copia nova frase para a variÃ¡vel principal
 
     printf("\n");
     system("cls||clear"); // Limpa a tela (funciona no Windows ou Linux)
 }
 
-// Substitui todas as ocorrências de uma letra por outra
+// Substitui todas as ocorrÃªncias de uma letra por outra
 void subLetra(char *frase)
 {
     char alvo, alternativo, substituto;
@@ -70,18 +70,18 @@ void subLetra(char *frase)
     scanf(" %c", &substituto);
     printf("\n");
 
-    // Se o usuário digitou letra maiúscula, gera alternativa minúscula
+    // Se o usuÃ¡rio digitou letra maiÃºscula, gera alternativa minÃºscula
     if(alvo <= 'Z' && alvo >= 'A')
     {
-        alternativo = alvo + 32; // Converte para minúscula
+        alternativo = alvo + 32; // Converte para minÃºscula
     }
-    // Se o usuário digitou letra minúscula, gera alternativa maiúscula
+    // Se o usuÃ¡rio digitou letra minÃºscula, gera alternativa maiÃºscula
     else if(alvo <= 'z' && alvo >= 'a')
     {
-        alternativo = alvo - 32; // Converte para maiúscula
+        alternativo = alvo - 32; // Converte para maiÃºscula
     }
 
-    // Percorre a frase substituindo todas as ocorrências
+    // Percorre a frase substituindo todas as ocorrÃªncias
     for(int i = 0; i < MaxCaracteres; i++)
     {
         if(frase[i] == alvo || frase[i] == alternativo)
@@ -97,7 +97,7 @@ int main()
     int entrada;
     char frase[MaxCaracteres];
 
-    // Usuário digita a frase inicial
+    // UsuÃ¡rio digita a frase inicial
     printf("Digite uma frase: ");
     fgets(frase, MaxCaracteres, stdin);
     frase[strcspn(frase, "\n")] = '\0'; // Remove o '\n' do final
@@ -106,8 +106,8 @@ int main()
     do
     {
         entrada = pergunta();      // Mostra menu e pega escolha
-        escolha(entrada, frase);   // Executa ação correspondente
-    }while(entrada != 3);          // Repete até usuário escolher sair
+        escolha(entrada, frase);   // Executa aÃ§Ã£o correspondente
+    }while(entrada != 3);          // Repete atÃ© usuÃ¡rio escolher sair
 
     return 0;
 }
