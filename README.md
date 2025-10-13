@@ -26,6 +26,7 @@ Este repositório é o meu espaço para registrar e compartilhar meu aprendizado
 - **Manipulação de dados:** Vetores, matrizes, strings e ponteiros.  
 - **Entrada e saída de dados:** Uso da biblioteca padrão `stdio.h`.  
 - **Alocação de memória:** Introdução ao uso de `malloc`, `free` e ponteiros.
+- **Structs: Introdução a estruturas de dados personalizadas.
 
 ---
 
